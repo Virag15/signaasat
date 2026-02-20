@@ -34,3 +34,17 @@ yarn-error.log*
 *.tmp
 .cache/
 .temp/
+
+# Backup files
+*.backup
+*.bak
+*~
+
+# Development docs (internal only)
+docs/CHECKLIST.md
+docs/SIGNAASAT_CONTEXT.md
+
+# Deployment configs (optional - remove if using)
+# netlify.toml
+# vercel.json
+# router.php
