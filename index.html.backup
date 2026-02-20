@@ -1,0 +1,2460 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="SIGNAASAT — Healthcare Acquisition & AI Infrastructure. Combining performance acquisition, proprietary ad-tech, and AI agents to help hospitals acquire, convert, and scale patients globally.">
+  <title>SIGNAASAT — Healthcare Acquisition & AI Infrastructure</title>
+  <link rel="stylesheet" href="assets/css/shared.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    /* ─── INDEX-SPECIFIC ─── */
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: calc(var(--nav-h) + 60px) var(--gutter) 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-glow-1 {
+      position: absolute;
+      width: 720px;
+      height: 720px;
+      background: radial-gradient(circle, var(--accent-glow), transparent 65%);
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -55%);
+      animation: gpulse 9s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .hero-glow-2 {
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, rgba(79, 204, 232, 0.1), transparent 65%);
+      top: 65%;
+      left: 32%;
+      transform: translate(-50%, -50%);
+      animation: gpulse 13s ease-in-out infinite reverse;
+      pointer-events: none;
+    }
+
+    @keyframes gpulse {
+
+      0%,
+      100% {
+        opacity: .55;
+        transform: translate(-50%, -55%) scale(1)
+      }
+
+      50% {
+        opacity: 1;
+        transform: translate(-50%, -55%) scale(1.08)
+      }
+    }
+
+    @keyframes numberUpdate {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1)
+      }
+
+      50% {
+        opacity: 0.85;
+        transform: scale(0.98)
+      }
+    }
+
+    @keyframes pulseGlow {
+
+      0%,
+      100% {
+        box-shadow: 0 0 8px var(--accent-glow)
+      }
+
+      50% {
+        box-shadow: 0 0 16px var(--accent-glow), 0 0 24px var(--accent-glow)
+      }
+    }
+
+    .hero-badge {
+      animation: fadeUp .8s ease .2s both;
+      margin-bottom: 30px;
+    }
+
+    .hero-title {
+      animation: fadeUp .8s ease .4s both;
+      margin-bottom: 26px;
+    }
+
+    .hero-sub {
+      animation: fadeUp .8s ease .6s both;
+      max-width: 560px;
+      margin: 0 auto 22px;
+    }
+
+    .hero-tags {
+      animation: fadeUp .8s ease .75s both;
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .hero-tag {
+      padding: 5px 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 12px;
+      color: var(--text2);
+      letter-spacing: -0.01em;
+      transition: all var(--tr);
+    }
+
+    .hero-tag:hover {
+      background: var(--surface2);
+      color: var(--text);
+      border-color: var(--border2);
+    }
+
+    .hero-btns {
+      animation: fadeUp .8s ease .9s both;
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    /* ─── HERO VISUAL — SIGNAASAT themed dashboard ─── */
+    .hero-visual {
+      animation: fadeUp 1s ease 1.1s both;
+      position: relative;
+      width: 100%;
+      max-width: 1000px;
+      margin: 72px auto 0;
+    }
+
+    /* Ambient glow behind the card */
+    .hero-visual-glow {
+      position: absolute;
+      inset: -40px;
+      background: radial-gradient(ellipse 70% 50% at 50% 60%, rgba(123, 110, 246, 0.2), transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Outer container — positions floating chips */
+    .hdash-outer {
+      position: relative;
+      z-index: 1;
+      padding: 0;
+    }
+
+    /* Main chart card */
+    .hdash-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 32px 80px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(123, 110, 246, 0.12);
+      transition: background var(--tr), border-color var(--tr);
+    }
+
+    [data-theme="light"] .hdash-card {
+      background: #ffffff;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.14), 0 0 0 1px rgba(99, 88, 224, 0.1);
+    }
+
+    /* Top bar */
+    .hdash-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 24px 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hdash-topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hdash-live-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(61, 214, 140, 0.1);
+      border: 1px solid rgba(61, 214, 140, 0.25);
+      border-radius: 100px;
+      padding: 4px 12px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--green);
+      letter-spacing: -0.01em;
+    }
+
+    .hdash-live-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--green);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--green);
+      animation: blink 1.5s ease infinite;
+    }
+
+    .hdash-label {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.018em;
+    }
+
+    .hdash-meta {
+      font-size: 11.5px;
+      color: var(--text3);
+      letter-spacing: -0.01em;
+    }
+
+    .hdash-period {
+      display: flex;
+      gap: 4px;
+    }
+
+    .period-btn {
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text3);
+      background: transparent;
+      border: 1px solid transparent;
+      transition: all var(--tr-fast);
+      letter-spacing: -0.01em;
+      cursor: pointer;
+    }
+
+    .period-btn:hover {
+      background: var(--surface);
+      color: var(--text2);
+    }
+
+    .period-btn.active {
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-color: rgba(123, 110, 246, .2);
+    }
+
+    /* Stat strip under topbar */
+    .hdash-stat-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hdash-stat {
+      padding: 14px 20px;
+      border-right: 1px solid var(--border);
+      transition: background var(--tr-fast);
+      text-align: center;
+    }
+
+    .hdash-stat:last-child {
+      border-right: none;
+    }
+
+    .hdash-stat:hover {
+      background: var(--surface);
+    }
+
+    .hdash-stat-lbl {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--text3);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 5px;
+    }
+
+    .hdash-stat-val {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      line-height: 1;
+      animation: numberUpdate 2.5s ease-in-out infinite;
+      transition: all 0.3s ease;
+    }
+
+    .hdash-stat:nth-child(1) .hdash-stat-val {
+      animation-delay: 0s;
+    }
+
+    .hdash-stat:nth-child(2) .hdash-stat-val {
+      animation-delay: 0.3s;
+    }
+
+    .hdash-stat:nth-child(3) .hdash-stat-val {
+      animation-delay: 0.6s;
+    }
+
+    .hdash-stat:nth-child(4) .hdash-stat-val {
+      animation-delay: 0.9s;
+    }
+
+    .hdash-stat-val.ac {
+      color: var(--accent);
+    }
+
+    .hdash-stat-val.tl {
+      color: var(--teal);
+    }
+
+    .hdash-stat-val.gn {
+      color: var(--green);
+    }
+
+    .hdash-stat-val.wt {
+      color: var(--text);
+    }
+
+    .hdash-stat-delta {
+      font-size: 10px;
+      color: var(--green);
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      letter-spacing: -0.01em;
+    }
+
+    .hdash-stat-delta svg {
+      width: 9px;
+      height: 9px;
+    }
+
+    .hdash-stat-delta.neg {
+      color: var(--red);
+    }
+
+    /* Chart area */
+    .hdash-chart-area {
+      padding: 20px 0 0;
+      position: relative;
+      transition: opacity 0.3s ease;
+    }
+
+    .hdash-chart-area.updating {
+      opacity: 0.5;
+    }
+
+    .hdash-chart-svg {
+      width: 100%;
+      display: block;
+    }
+
+    /* Bottom panel — 2 mini widgets */
+    .hdash-bottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid var(--border);
+    }
+
+    .hdash-mini {
+      padding: 16px 20px;
+      border-right: 1px solid var(--border);
+    }
+
+    .hdash-mini:last-child {
+      border-right: none;
+    }
+
+    .hdash-mini-title {
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--text2);
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .hdash-mini-badge {
+      font-size: 9px;
+      padding: 2px 7px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-radius: 100px;
+      border: 1px solid rgba(123, 110, 246, 0.2);
+    }
+
+    /* Mini bar chart */
+    .mini-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 4px;
+      height: 36px;
+    }
+
+    .mini-bar {
+      flex: 1;
+      border-radius: 2px 2px 0 0;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+
+    .mini-bar:hover {
+      opacity: 1;
+    }
+
+    .mini-bar.ac {
+      background: var(--accent);
+    }
+
+    .mini-bar.tl {
+      background: var(--teal);
+    }
+
+    .mini-bar.gn {
+      background: var(--green);
+    }
+
+    .mini-bar-labels {
+      display: flex;
+      gap: 4px;
+      margin-top: 4px;
+    }
+
+    .mini-bar-lbl {
+      flex: 1;
+      text-align: center;
+      font-size: 7.5px;
+      color: var(--text3);
+    }
+
+    /* Mini funnel */
+    .mini-funnel {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .mini-funnel-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mf-label {
+      font-size: 10.5px;
+      color: var(--text2);
+      width: 58px;
+      flex-shrink: 0;
+      letter-spacing: -0.01em;
+    }
+
+    .mf-track {
+      flex: 1;
+      height: 5px;
+      background: var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .mf-fill {
+      height: 100%;
+      border-radius: 3px;
+    }
+
+    .mf-count {
+      font-size: 10px;
+      font-weight: 600;
+      width: 26px;
+      text-align: right;
+      color: var(--text2);
+      animation: numberUpdate 1.4s ease-in-out infinite;
+    }
+
+    /* Floating chips — attached to bottom of card */
+    .hero-chips-row {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 20px;
+      padding: 0 24px;
+      position: relative;
+      z-index: 3;
+      flex-wrap: wrap;
+    }
+
+    .hero-chip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 16px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+      transition: background var(--tr), border-color var(--tr), transform var(--tr);
+      flex: 1 1 190px;
+      max-width: 230px;
+    }
+
+    [data-theme="light"] .hero-chip {
+      background: #fff;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero-chip:hover {
+      transform: translateY(-3px);
+      border-color: var(--border2);
+    }
+
+    .hchip-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent-soft);
+      border: 1px solid rgba(123, 110, 246, .18);
+      color: var(--accent);
+    }
+
+    .hchip-icon svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .hchip-icon.tl {
+      background: var(--teal-soft);
+      border-color: rgba(79, 204, 232, .18);
+      color: var(--teal);
+    }
+
+    .hchip-icon.gn {
+      background: rgba(61, 214, 140, 0.1);
+      border-color: rgba(61, 214, 140, .18);
+      color: var(--green);
+    }
+
+    .hchip-icon.rd {
+      background: rgba(255, 107, 107, 0.1);
+      border-color: rgba(255, 107, 107, .18);
+      color: var(--red);
+    }
+
+    .hchip-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      flex: 1;
+    }
+
+    .hchip-lbl {
+      font-size: 9.5px;
+      color: var(--text3);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+
+    .hchip-val {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .hchip-delta {
+      font-size: 10px;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .hchip-delta.up {
+      color: var(--green);
+    }
+
+    .hchip-delta.dn {
+      color: var(--red);
+    }
+
+    .hchip-delta svg {
+      width: 10px;
+      height: 10px;
+    }
+
+    /* SHIFT SECTION */
+    .frag-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .frag-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 13px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 13.5px;
+      color: var(--text2);
+      letter-spacing: -0.01em;
+      position: relative;
+      overflow: hidden;
+      transition: all var(--tr);
+    }
+
+    .frag-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--border);
+      transition: background var(--tr);
+    }
+
+    .frag-item:hover {
+      background: var(--surface2);
+      color: var(--text);
+    }
+
+    .frag-item:hover::before {
+      background: var(--red);
+    }
+
+    .frag-icon {
+      color: var(--text3);
+      flex-shrink: 0;
+    }
+
+    .frag-icon svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .unify-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      padding: 44px 36px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .unify-box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, var(--accent-soft), transparent 70%);
+    }
+
+    .unify-box::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: .7;
+    }
+
+    .unify-sub {
+      font-size: 14px;
+      color: var(--text2);
+      margin-top: 8px;
+      margin-bottom: 28px;
+      letter-spacing: -0.01em;
+    }
+
+    /* DIAGRAM */
+    .diagram-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 24px 28px;
+      position: relative;
+    }
+
+    .diagram-wrap::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: .6;
+    }
+
+    .diagram-inner {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      position: relative;
+    }
+
+    .diagram-line {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border2) 20%, var(--border2) 80%, transparent);
+      pointer-events: none;
+    }
+
+    .d-node {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 10px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      transition: all var(--tr);
+    }
+
+    .d-node:hover {
+      background: var(--accent-soft);
+      border-color: rgba(123, 110, 246, 0.4);
+      transform: translateY(-3px);
+    }
+
+    .d-node.active {
+      border-color: rgba(123, 110, 246, 0.5);
+      background: var(--accent-soft);
+    }
+
+    .d-node-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 9px;
+      color: var(--text3);
+      transition: color var(--tr);
+    }
+
+    .d-node-icon svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .d-node.active .d-node-icon {
+      color: var(--accent);
+    }
+
+    .d-node-lbl {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--text3);
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      transition: color var(--tr);
+    }
+
+    .d-node.active .d-node-lbl {
+      color: var(--accent);
+    }
+
+    /* OS SECTION [FIX #12] */
+    .os-section-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    /* [FIX #12] */
+    .os-feat-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .os-feat-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 18px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      transition: all var(--tr);
+    }
+
+    .os-feat-row:hover {
+      background: var(--surface2);
+      border-color: var(--border2);
+    }
+
+    .os-feat-icon {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+      background: var(--accent-soft);
+      border: 1px solid rgba(123, 110, 246, 0.18);
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+    }
+
+    .os-feat-icon svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .os-feat-title {
+      font-size: 13.5px;
+      font-weight: 600;
+      letter-spacing: -0.018em;
+      margin-bottom: 3px;
+    }
+
+    .os-feat-desc {
+      font-size: 12.5px;
+      color: var(--text2);
+      line-height: 1.55;
+      letter-spacing: -0.008em;
+    }
+
+    /* Dashboard mockup */
+    .dash-mock {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: background var(--tr);
+    }
+
+    .dash-mock-bar {
+      padding: 11px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--bg2);
+      transition: background var(--tr);
+    }
+
+    .dm-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .dm-dot-r {
+      background: rgba(255, 95, 87, .65);
+    }
+
+    .dm-dot-y {
+      background: rgba(255, 189, 46, .65);
+    }
+
+    .dm-dot-g {
+      background: rgba(39, 201, 63, .65);
+    }
+
+    .dm-title {
+      font-size: 10.5px;
+      color: var(--text3);
+      margin-left: 6px;
+      letter-spacing: -0.01em;
+    }
+
+    .dash-mock-body {
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 9px;
+    }
+
+    .stat-tile {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      padding: 12px;
+    }
+
+    .stat-lbl {
+      font-size: 9px;
+      color: var(--text3);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 5px;
+    }
+
+    .stat-val {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      line-height: 1;
+      animation: numberUpdate 1.2s ease infinite;
+    }
+
+    .stat-val.ac {
+      color: var(--accent);
+    }
+
+    .stat-val.tl {
+      color: var(--teal);
+    }
+
+    .stat-val.gn {
+      color: var(--green);
+    }
+
+    .stat-delta {
+      font-size: 9.5px;
+      color: var(--green);
+      margin-top: 3px;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .stat-delta svg {
+      width: 9px;
+      height: 9px;
+    }
+
+    /* bar chart */
+    .chart-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      padding: 12px;
+    }
+
+    .chart-hd {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .chart-hd-title {
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .chart-badge {
+      font-size: 9px;
+      padding: 2px 8px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-radius: 100px;
+      border: 1px solid rgba(123, 110, 246, 0.2);
+    }
+
+    .bar-chart {
+      display: flex;
+      align-items: flex-end;
+      gap: 5px;
+      height: 44px;
+    }
+
+    .bar {
+      flex: 1;
+      background: var(--accent);
+      border-radius: 2px 2px 0 0;
+      opacity: .65;
+      transition: opacity .2s;
+    }
+
+    .bar:hover {
+      opacity: 1;
+    }
+
+    .bar:nth-child(2n) {
+      background: var(--teal);
+    }
+
+    .bar:nth-child(6) {
+      background: var(--green);
+    }
+
+    .bar-labels {
+      display: flex;
+      gap: 5px;
+      margin-top: 5px;
+    }
+
+    .bar-lbl {
+      flex: 1;
+      text-align: center;
+      font-size: 8px;
+      color: var(--text3);
+    }
+
+    /* pipeline */
+    .pipe-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      padding: 12px;
+    }
+
+    .pipe-title {
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 10px;
+    }
+
+    .pipe-row {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 4px 0;
+    }
+
+    .pipe-lbl {
+      font-size: 10.5px;
+      color: var(--text2);
+      width: 68px;
+      flex-shrink: 0;
+      letter-spacing: -0.01em;
+    }
+
+    .pipe-track {
+      flex: 1;
+      height: 5px;
+      background: var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .pipe-fill {
+      height: 100%;
+      border-radius: 3px;
+    }
+
+    .pf-ac {
+      background: var(--accent);
+    }
+
+    .pf-tl {
+      background: var(--teal);
+    }
+
+    .pf-gn {
+      background: var(--green);
+    }
+
+    .pipe-count {
+      font-size: 10.5px;
+      font-weight: 600;
+      width: 28px;
+      text-align: right;
+      animation: numberUpdate 1.3s ease-in-out infinite;
+    }
+
+    /* agent feed */
+    .feed-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      padding: 12px;
+    }
+
+    .feed-hd {
+      font-size: 10.5px;
+      font-weight: 600;
+      margin-bottom: 9px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .feed-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--green);
+      border-radius: 50%;
+      box-shadow: 0 0 6px var(--green);
+      animation: blink 1.5s ease infinite;
+    }
+
+    .feed-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 4px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 10.5px;
+      color: var(--text2);
+    }
+
+    .feed-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .feed-item svg {
+      width: 10px;
+      height: 10px;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .feed-time {
+      color: var(--text3);
+      font-size: 9.5px;
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+
+    /* campaign */
+    .camp-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      overflow: hidden;
+    }
+
+    .camp-head {
+      display: grid;
+      grid-template-columns: 1fr 44px 50px;
+      padding: 7px 11px;
+      border-bottom: 1px solid var(--border);
+      font-size: 9px;
+      color: var(--text3);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    .camp-row {
+      display: grid;
+      grid-template-columns: 1fr 44px 50px;
+      padding: 6px 11px;
+      border-bottom: 1px solid var(--border);
+      font-size: 10.5px;
+      align-items: center;
+      transition: background .15s;
+    }
+
+    .camp-row:last-child {
+      border-bottom: none;
+    }
+
+    .camp-row:hover {
+      background: var(--surface2);
+    }
+
+    .camp-name {
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+
+    .camp-cpa {
+      color: var(--text2);
+      font-size: 10px;
+    }
+
+    .s-live {
+      display: inline-flex;
+      padding: 2px 7px;
+      border-radius: 100px;
+      font-size: 9px;
+      font-weight: 500;
+      background: rgba(61, 214, 140, .1);
+      color: var(--green);
+      border: 1px solid rgba(61, 214, 140, .2);
+    }
+
+    .s-pause {
+      display: inline-flex;
+      padding: 2px 7px;
+      border-radius: 100px;
+      font-size: 9px;
+      font-weight: 500;
+      background: rgba(255, 107, 107, .1);
+      color: var(--red);
+      border: 1px solid rgba(255, 107, 107, .2);
+    }
+
+    /* GLOBAL */
+    .region-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 48px;
+    }
+
+    .region-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 26px 18px;
+      text-align: center;
+      transition: all var(--tr);
+      box-shadow: var(--card-shadow);
+    }
+
+    .region-card:hover {
+      background: var(--surface2);
+      border-color: var(--border2);
+      transform: translateY(-4px);
+      box-shadow: var(--card-hshadow);
+    }
+
+    .region-icon {
+      color: var(--accent);
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .region-icon svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .region-name {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+
+    .region-status {
+      font-size: 11.5px;
+      color: var(--text3);
+      letter-spacing: -0.01em;
+    }
+
+    /* WHY */
+    .why-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-top: 36px;
+    }
+
+    .why-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .why-num {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      width: 26px;
+      height: 26px;
+      border: 1px solid rgba(123, 110, 246, .3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .why-title {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+
+    .why-desc {
+      font-size: 13.5px;
+      color: var(--text2);
+      line-height: 1.65;
+      letter-spacing: -0.01em;
+    }
+
+    .infra-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      padding: 44px 36px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+    }
+
+    .infra-box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, var(--accent-soft), transparent 70%);
+    }
+
+    .infra-big {
+      font-size: 52px;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      margin-bottom: 14px;
+      background: linear-gradient(130deg, var(--text), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+    }
+
+    .infra-sub {
+      font-size: 14px;
+      color: var(--text2);
+      line-height: 1.7;
+      margin-bottom: 28px;
+      letter-spacing: -0.01em;
+      position: relative;
+    }
+
+    .infra-metrics {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 11px;
+      position: relative;
+    }
+
+    .infra-metric {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+      transition: background var(--tr);
+    }
+
+    .im-val {
+      font-size: 21px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: -0.03em;
+    }
+
+    .im-lbl {
+      font-size: 11px;
+      color: var(--text3);
+      margin-top: 3px;
+      letter-spacing: -0.01em;
+    }
+
+    /* CTA */
+    .cta-section {
+      padding: 160px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      width: 580px;
+      height: 580px;
+      background: radial-gradient(circle, var(--accent-glow), transparent 65%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .cta-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .cta-eyebrow {
+      font-size: 11px;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 22px;
+    }
+
+    .cta-btns {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      margin-top: 44px;
+    }
+
+    /* 24/7 full-width card [FIX #14] */
+    .card-fullrow {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      background: linear-gradient(135deg, var(--accent-soft), var(--teal-soft));
+      border-color: rgba(123, 110, 246, .28);
+    }
+
+    .card-fullrow .always-on-num {
+      font-size: 52px;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 1300px) {
+      .hero-chips-row {
+        gap: 10px;
+        padding: 0 20px;
+        margin-top: 24px;
+      }
+
+      .hero-chip {
+        flex: 1 1 calc(50% - 5px);
+        max-width: 48%;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .hero-chips-row {
+        gap: 10px;
+        padding: 0 16px;
+        margin-top: 24px;
+      }
+
+      .hero-chip {
+        flex: 1 1 calc(50% - 5px);
+        max-width: 48%;
+      }
+
+      .os-section-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .region-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .diagram-inner {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .card-fullrow {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .region-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .cta-btns {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .hero-btns {
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .hero-chips-row {
+        gap: 8px;
+        padding: 0 12px;
+        margin-top: 20px;
+      }
+
+      .hero-chip {
+        flex: 1 1 100%;
+        max-width: 100%;
+      }
+
+      .hdash-stat-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hdash-stat:nth-child(2) {
+        border-right: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="cursor"></div>
+  <div class="cursor-ring"></div>
+  <div class="noise"></div>
+
+  <!-- ═══ NAVIGATION ═══ -->
+  <nav class="nav" role="navigation" aria-label="Main">
+    <a href="index.html" class="nav-logo" aria-label="SIGNAASAT Home">
+      <span class="logo-mark">
+        <svg viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="30" height="30" rx="8" class="logo-bg" />
+          <path d="M7 20 C9 20 11 12 15 15 C19 18 21 10 23 10" stroke="white" stroke-width="2.5" stroke-linecap="round"
+            stroke-linejoin="round" fill="none" />
+          <circle cx="23" cy="10" r="2" fill="white" />
+          <circle cx="7" cy="20" r="2" fill="white" />
+        </svg>
+      </span>
+      <span class="logo-text">SIGNAA<em>SAT</em></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#shift">Platform</a></li>
+      <li><a href="#healthcare">Healthcare</a></li>
+      <li><a href="#ai">AI Agents</a></li>
+      <li><a href="#os">OS</a></li>
+      <li><a href="#global">Global</a></li>
+      <li><a href="pages/blog.html">Blog</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <i data-lucide="sun" class="icon-sun"></i>
+        <i data-lucide="moon" class="icon-moon"></i>
+      </button>
+      <a href="pages/contact.html" class="btn btn-ghost">See Platform</a>
+      <a href="pages/contact.html" class="btn btn-primary">Book a Call</a>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <section id="hero" aria-label="Hero">
+    <div class="hero-glow-1" aria-hidden="true"></div>
+    <div class="hero-glow-2" aria-hidden="true"></div>
+    <div class="grid-bg" aria-hidden="true"></div>
+
+    <div class="badge hero-badge">
+      <span class="badge-dot"></span>
+      Healthcare Acquisition & AI Infrastructure
+    </div>
+
+    <h1 class="t-hero hero-title">
+      Healthcare Acquisition.<br>
+      <span class="grad-text">Autonomous.</span>
+    </h1>
+
+    <p class="t-body hero-sub">
+      SIGNAASAT combines performance acquisition, proprietary ad-tech infrastructure, and AI agents to help hospitals
+      acquire, convert, and scale patients globally.
+    </p>
+
+    <div class="hero-tags" role="list">
+      <span class="hero-tag" role="listitem">Content</span>
+      <span class="hero-tag" role="listitem">Ads</span>
+      <span class="hero-tag" role="listitem">Conversion</span>
+      <span class="hero-tag" role="listitem">AI Agents</span>
+      <span class="hero-tag" role="listitem">Infrastructure</span>
+    </div>
+
+    <div class="hero-btns">
+      <a href="pages/contact.html" class="btn btn-lg btn-primary">
+        Book a Call
+        <i data-lucide="arrow-right"></i>
+      </a>
+      <a href="pages/contact.html" class="btn btn-lg btn-ghost">See Platform</a>
+    </div>
+
+    <!-- Hero Dashboard Visual — SIGNAASAT themed -->
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hero-visual-glow"></div>
+      <div class="hdash-outer">
+        <div class="hdash-card">
+
+          <!-- Top bar -->
+          <div class="hdash-topbar">
+            <div class="hdash-topbar-left">
+              <div class="hdash-live-pill">
+                <span class="hdash-live-dot"></span> Live
+              </div>
+              <div class="hdash-label">Acquisition Performance</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:16px;">
+
+              <div class="hdash-period">
+                <button class="period-btn">1W</button>
+                <button class="period-btn active">1M</button>
+                <button class="period-btn">3M</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stat strip -->
+          <div class="hdash-stat-strip">
+            <div class="hdash-stat">
+              <div class="hdash-stat-lbl">Total Leads</div>
+              <div class="hdash-stat-val ac">18,427</div>
+              <div class="hdash-stat-delta"><i data-lucide="trending-up"></i> +22.4% vs last month</div>
+            </div>
+            <div class="hdash-stat">
+              <div class="hdash-stat-lbl">Conversion Rate</div>
+              <div class="hdash-stat-val tl">34.2%</div>
+              <div class="hdash-stat-delta"><i data-lucide="trending-up"></i> +5.1 pts</div>
+            </div>
+            <div class="hdash-stat">
+              <div class="hdash-stat-lbl">Patients Booked</div>
+              <div class="hdash-stat-val gn">6,302</div>
+              <div class="hdash-stat-delta"><i data-lucide="trending-up"></i> +18.7%</div>
+            </div>
+            <div class="hdash-stat">
+              <div class="hdash-stat-lbl">Avg. CAC</div>
+              <div class="hdash-stat-val wt">$18.40</div>
+              <div class="hdash-stat-delta neg"><i data-lucide="trending-down"></i> −12% (improved)</div>
+            </div>
+          </div>
+
+          <!-- Wave chart -->
+          <div class="hdash-chart-area">
+            <svg class="hdash-chart-svg" viewBox="0 0 960 180" preserveAspectRatio="none" role="img"
+              aria-label="Acquisition performance wave chart">
+              <defs>
+                <linearGradient id="hg1" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#7b6ef6" stop-opacity="0.38" />
+                  <stop offset="100%" stop-color="#7b6ef6" stop-opacity="0.02" />
+                </linearGradient>
+                <linearGradient id="hg2" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#4fcce8" stop-opacity="0.22" />
+                  <stop offset="100%" stop-color="#4fcce8" stop-opacity="0.02" />
+                </linearGradient>
+              </defs>
+              <!-- Soft grid -->
+              <g stroke="rgba(123,110,246,0.06)" stroke-width="1">
+                <line x1="160" y1="0" x2="160" y2="165" />
+                <line x1="320" y1="0" x2="320" y2="165" />
+                <line x1="480" y1="0" x2="480" y2="165" />
+                <line x1="640" y1="0" x2="640" y2="165" />
+                <line x1="800" y1="0" x2="800" y2="165" />
+              </g>
+              <g stroke="rgba(255,255,255,0.03)" stroke-width="1">
+                <line x1="0" y1="55" x2="960" y2="55" />
+                <line x1="0" y1="110" x2="960" y2="110" />
+              </g>
+              <!-- Primary — Acquisition -->
+              <path fill="url(#hg1)"
+                d="M 0 145 C 80 145 120 52 230 65 C 340 78 370 142 480 108 C 590 74 620 22 730 42 C 840 62 900 110 960 95 L 960 180 L 0 180 Z" />
+              <path fill="none" stroke="#7b6ef6" stroke-width="2.5" stroke-linecap="round"
+                d="M 0 145 C 80 145 120 52 230 65 C 340 78 370 142 480 108 C 590 74 620 22 730 42 C 840 62 900 110 960 95" />
+              <!-- Secondary — Conversion -->
+              <path fill="url(#hg2)"
+                d="M 0 160 C 80 160 115 125 220 133 C 325 141 355 162 465 148 C 575 134 605 95 714 108 C 823 121 878 145 960 140 L 960 180 L 0 180 Z" />
+              <path fill="none" stroke="#4fcce8" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="6 4"
+                d="M 0 160 C 80 160 115 125 220 133 C 325 141 355 162 465 148 C 575 134 605 95 714 108 C 823 121 878 145 960 140" />
+              <!-- Peak glow -->
+              <circle cx="730" cy="42" r="4.5" fill="#7b6ef6" />
+              <circle cx="730" cy="42" r="10" fill="#7b6ef6" opacity="0.18">
+                <animate attributeName="r" values="8;14;8" dur="3s" repeatCount="indefinite" />
+                <animate attributeName="opacity" values="0.18;0;0.18" dur="3s" repeatCount="indefinite" />
+              </circle>
+              <!-- Peak callout -->
+              <rect x="738" y="24" width="72" height="20" rx="5" fill="rgba(123,110,246,0.2)"
+                stroke="rgba(123,110,246,0.45)" stroke-width="1" />
+              <text x="774" y="38" fill="white" font-size="10.5" text-anchor="middle"
+                font-family="system-ui,-apple-system" font-weight="600">Peak +312%</text>
+              <!-- Month labels -->
+              <text x="80" y="175" fill="rgba(255,255,255,0.2)" font-size="9.5" text-anchor="middle"
+                font-family="system-ui">Aug</text>
+              <text x="240" y="175" fill="rgba(255,255,255,0.2)" font-size="9.5" text-anchor="middle"
+                font-family="system-ui">Sep</text>
+              <text x="400" y="175" fill="rgba(255,255,255,0.2)" font-size="9.5" text-anchor="middle"
+                font-family="system-ui">Oct</text>
+              <text x="560" y="175" fill="rgba(255,255,255,0.2)" font-size="9.5" text-anchor="middle"
+                font-family="system-ui">Nov</text>
+              <text x="720" y="175" fill="rgba(255,255,255,0.2)" font-size="9.5" text-anchor="middle"
+                font-family="system-ui">Dec</text>
+              <text x="880" y="175" fill="rgba(255,255,255,0.2)" font-size="9.5" text-anchor="middle"
+                font-family="system-ui">Jan</text>
+              <!-- Legend -->
+              <line x1="18" y1="14" x2="34" y2="14" stroke="#7b6ef6" stroke-width="2.5" stroke-linecap="round" />
+              <text x="40" y="18" fill="rgba(255,255,255,0.4)" font-size="10" font-family="system-ui">Acquisition</text>
+              <line x1="120" y1="14" x2="136" y2="14" stroke="#4fcce8" stroke-width="1.8" stroke-dasharray="5 3"
+                stroke-linecap="round" />
+              <text x="142" y="18" fill="rgba(255,255,255,0.4)" font-size="10" font-family="system-ui">Conversion</text>
+            </svg>
+          </div>
+
+          <!-- Bottom mini panels -->
+          <div class="hdash-bottom">
+            <div class="hdash-mini">
+              <div class="hdash-mini-title">
+                Weekly Volume
+                <span class="hdash-mini-badge">↑ 18%</span>
+              </div>
+              <div class="mini-bars">
+                <div class="mini-bar ac" style="height:62%"></div>
+                <div class="mini-bar tl" style="height:78%"></div>
+                <div class="mini-bar ac" style="height:55%"></div>
+                <div class="mini-bar tl" style="height:90%"></div>
+                <div class="mini-bar ac" style="height:72%"></div>
+                <div class="mini-bar gn" style="height:96%"></div>
+                <div class="mini-bar ac" style="height:100%"></div>
+              </div>
+              <div class="mini-bar-labels">
+                <span class="mini-bar-lbl">M</span><span class="mini-bar-lbl">T</span><span
+                  class="mini-bar-lbl">W</span>
+                <span class="mini-bar-lbl">T</span><span class="mini-bar-lbl">F</span><span
+                  class="mini-bar-lbl">S</span><span class="mini-bar-lbl">S</span>
+              </div>
+            </div>
+            <div class="hdash-mini">
+              <div class="hdash-mini-title">Pipeline Today</div>
+              <div class="mini-funnel">
+                <div class="mini-funnel-row">
+                  <span class="mf-label">Leads</span>
+                  <div class="mf-track">
+                    <div class="mf-fill pf-ac" style="width:100%;background:var(--accent)"></div>
+                  </div>
+                  <span class="mf-count">847</span>
+                </div>
+                <div class="mini-funnel-row">
+                  <span class="mf-label">Qualified</span>
+                  <div class="mf-track">
+                    <div class="mf-fill" style="width:64%;background:var(--teal)"></div>
+                  </div>
+                  <span class="mf-count">542</span>
+                </div>
+                <div class="mini-funnel-row">
+                  <span class="mf-label">Booked</span>
+                  <div class="mf-track">
+                    <div class="mf-fill" style="width:13.5%;background:var(--green)"></div>
+                  </div>
+                  <span class="mf-count">115</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating chips below card -->
+        <div class="hero-chips-row">
+          <div class="hero-chip">
+            <div class="hchip-icon"><i data-lucide="trending-up"></i></div>
+            <div class="hchip-content">
+              <div class="hchip-lbl">ROAS</div>
+              <div class="hchip-val">+312%</div>
+              <div class="hchip-delta up"><i data-lucide="arrow-up"></i>vs last month</div>
+            </div>
+          </div>
+          <div class="hero-chip">
+            <div class="hchip-icon tl"><i data-lucide="users"></i></div>
+            <div class="hchip-content">
+              <div class="hchip-lbl">Patients Booked</div>
+              <div class="hchip-val" style="color:var(--teal)">6,302</div>
+              <div class="hchip-delta up"><i data-lucide="arrow-up"></i>+18.7%</div>
+            </div>
+          </div>
+          <div class="hero-chip">
+            <div class="hchip-icon gn"><i data-lucide="bot"></i></div>
+            <div class="hchip-content">
+              <div class="hchip-lbl">AI Agents</div>
+              <div class="hchip-val" style="color:var(--green)">24/7</div>
+              <div class="hchip-delta up"><i data-lucide="zap"></i>Always active</div>
+            </div>
+          </div>
+          <div class="hero-chip">
+            <div class="hchip-icon rd"><i data-lucide="arrow-down-right"></i></div>
+            <div class="hchip-content">
+              <div class="hchip-lbl">Avg. CAC</div>
+              <div class="hchip-val">$18.40</div>
+              <div class="hchip-delta up"><i data-lucide="trending-down"></i>−12% this month</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TICKER 1 ═══ -->
+  <div class="ticker-wrap" aria-hidden="true">
+    <div class="ticker">
+      <div class="ticker-track">
+        <span class="ticker-item">Patient Acquisition <span class="ticker-sep"></span></span>
+        <span class="ticker-item">ORTB Infrastructure <span class="ticker-sep"></span></span>
+        <span class="ticker-item">AI Agents 24/7 <span class="ticker-sep"></span></span>
+        <span class="ticker-item">Conversion Automation <span class="ticker-sep"></span></span>
+        <span class="ticker-item">Global Health Networks <span class="ticker-sep"></span></span>
+        <span class="ticker-item">Performance Acquisition <span class="ticker-sep"></span></span>
+        <span class="ticker-item">Predictable Patient Flow <span class="ticker-sep"></span></span>
+        <span class="ticker-item">SaaS Visibility Layer <span class="ticker-sep"></span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ THE SHIFT [FIX #7 - t-big] ═══ -->
+  <section class="section-alt" id="shift">
+    <div class="container">
+      <div class="g-halves">
+        <div class="reveal">
+          <div class="t-label section-hd" style="margin-bottom:16px;"><i data-lucide="zap"></i> The Shift</div>
+          <h2 class="t-big">Hospitals don't need agencies.<br>They need <span class="grad-text">infrastructure.</span>
+          </h2>
+          <p class="t-body" style="margin-top:18px;">Healthcare acquisition today is fragmented, expensive, and
+            impossible to scale. SIGNAASAT unifies everything into one intelligent system.</p>
+          <div class="frag-list" role="list">
+            <div class="frag-item" role="listitem"><span class="frag-icon"><i
+                  data-lucide="x-circle"></i></span>Disconnected Agencies</div>
+            <div class="frag-item" role="listitem"><span class="frag-icon"><i
+                  data-lucide="x-circle"></i></span>Aggregator Dependency</div>
+            <div class="frag-item" role="listitem"><span class="frag-icon"><i
+                  data-lucide="x-circle"></i></span>Fragmented Ad Platforms</div>
+            <div class="frag-item" role="listitem"><span class="frag-icon"><i data-lucide="x-circle"></i></span>Manual
+              Call Centers</div>
+            <div class="frag-item" role="listitem"><span class="frag-icon"><i data-lucide="x-circle"></i></span>Siloed
+              Software Tools</div>
+          </div>
+        </div>
+        <div class="reveal d2">
+          <div class="unify-box">
+            <p class="t-label" style="justify-content:center;margin-bottom:24px;"><i data-lucide="layers"></i> SIGNAASAT
+              System</p>
+            <div class="orbit-wrap" style="position:relative;z-index:1;">
+              <div class="orbit"></div>
+              <div class="orbit"></div>
+              <div class="orbit"></div>
+              <div class="orbit-center"></div>
+            </div>
+            <h3 style="font-size:30px;font-weight:700;letter-spacing:-0.035em;margin-top:26px;position:relative;">One
+              System.</h3>
+            <p class="unify-sub" style="position:relative;">Unified. Intelligent. Autonomous.</p>
+            <p class="t-sm" style="position:relative;">Traffic → Ad Tech → Conversion → AI → SaaS<br>All connected. All
+              optimized. All yours.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FULL STACK [FIX #11 - moved up] ═══ -->
+  <section class="section" id="stack">
+    <div class="container">
+      <div class="section-hd reveal">
+        <div class="t-label"><i data-lucide="layers"></i> Full Stack Control</div>
+        <h2 class="t-section" style="margin-bottom:14px;">SIGNAASAT controls the <span class="grad-text">entire
+            acquisition stack.</span></h2>
+        <p class="t-body" style="max-width:500px;">Vertically integrated. No gaps. No dependencies. Every layer owned,
+          optimized, and compounding on the last.</p>
+      </div>
+      <div class="stack-layers reveal d1">
+        <div class="stack-layer">
+          <span class="layer-num">01</span>
+          <span class="layer-icon"><i data-lucide="radio-tower"></i></span>
+          <div class="layer-bar"></div>
+          <div style="flex:1;">
+            <div class="layer-name">Traffic Layer</div>
+            <div class="layer-desc">ORTB infrastructure, programmatic buying, global inventory access</div>
+          </div>
+          <span class="layer-tag">Active</span>
+        </div>
+        <div class="stack-layer">
+          <span class="layer-num">02</span>
+          <span class="layer-icon"><i data-lucide="cpu"></i></span>
+          <div class="layer-bar"></div>
+          <div style="flex:1;">
+            <div class="layer-name">Ad Infrastructure Layer</div>
+            <div class="layer-desc">Proprietary ad-tech with real-time optimization, targeting, and creative automation
+            </div>
+          </div>
+          <span class="layer-tag">Active</span>
+        </div>
+        <div class="stack-layer">
+          <span class="layer-num">03</span>
+          <span class="layer-icon"><i data-lucide="git-merge"></i></span>
+          <div class="layer-bar"></div>
+          <div style="flex:1;">
+            <div class="layer-name">Conversion Layer</div>
+            <div class="layer-desc">Funnels, CRM, patient communication — all conversion-optimized</div>
+          </div>
+          <span class="layer-tag">Active</span>
+        </div>
+        <div class="stack-layer">
+          <span class="layer-num">04</span>
+          <span class="layer-icon"><i data-lucide="bot"></i></span>
+          <div class="layer-bar"></div>
+          <div style="flex:1;">
+            <div class="layer-name">AI Automation Layer</div>
+            <div class="layer-desc">Autonomous agents for qualification, communication, and journey — 24/7</div>
+          </div>
+          <span class="layer-tag build">Building</span>
+        </div>
+        <div class="stack-layer">
+          <span class="layer-num">05</span>
+          <span class="layer-icon"><i data-lucide="layout-dashboard"></i></span>
+          <div class="layer-bar"></div>
+          <div style="flex:1;">
+            <div class="layer-name">SaaS Visibility Layer</div>
+            <div class="layer-desc">SIGNAASAT OS — acquisition tracking, pipeline visibility, AI insights</div>
+          </div>
+          <span class="layer-tag build">Building</span>
+        </div>
+      </div>
+      <!-- Hero diagram below stack -->
+      <div style="margin-top:40px;" class="reveal d2">
+        <div class="diagram-wrap">
+          <div class="diagram-inner">
+            <div class="diagram-line"></div>
+            <div class="d-node" data-idx="0">
+              <div class="d-node-icon"><i data-lucide="radio"></i></div>
+              <div class="d-node-lbl">Traffic</div>
+            </div>
+            <div class="d-node" data-idx="1">
+              <div class="d-node-icon"><i data-lucide="cpu"></i></div>
+              <div class="d-node-lbl">Ad Tech</div>
+            </div>
+            <div class="d-node active" data-idx="2">
+              <div class="d-node-icon"><i data-lucide="bot"></i></div>
+              <div class="d-node-lbl">AI Agents</div>
+            </div>
+            <div class="d-node" data-idx="3">
+              <div class="d-node-icon"><i data-lucide="target"></i></div>
+              <div class="d-node-lbl">Conversion</div>
+            </div>
+            <div class="d-node" data-idx="4">
+              <div class="d-node-icon"><i data-lucide="layout-dashboard"></i></div>
+              <div class="d-node-lbl">OS</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ HEALTHCARE ═══ -->
+  <section class="section" id="healthcare">
+    <div class="container">
+      <div class="section-hd reveal">
+        <div class="t-label"><i data-lucide="heart-pulse"></i> SIGNAASAT Healthcare</div>
+        <h2 class="t-section" style="margin-bottom:14px;">Direct patient acquisition.<br><span class="grad-text">Built
+            and proven.</span></h2>
+        <p class="t-body">We invest in acquisition. We earn on successful conversion. Hospitals get predictable,
+          scalable patient flow — without upfront risk.</p>
+      </div>
+      <div class="g3 reveal d1">
+        <div class="card">
+          <div class="card-icon"><i data-lucide="pen-tool"></i></div>
+          <h3 class="t-card">Content Creation</h3>
+          <p class="t-sm" style="margin-top:8px;">Medical-grade content that educates, builds trust, and drives intent —
+            automated at scale across every channel.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon"><i data-lucide="trending-up"></i></div>
+          <h3 class="t-card">Performance Campaigns</h3>
+          <p class="t-sm" style="margin-top:8px;">Data-driven campaigns continuously optimized for cost per acquisition
+            and patient lifetime value.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon"><i data-lucide="git-merge"></i></div>
+          <h3 class="t-card">Conversion Infrastructure</h3>
+          <p class="t-sm" style="margin-top:8px;">Landing pages, funnels, and follow-up systems that convert interest
+            into booked appointments — automatically.</p>
+        </div>
+      </div>
+      <div class="card reveal d2"
+        style="margin-top:16px;background:linear-gradient(135deg,var(--accent-soft),var(--teal-soft));border-color:rgba(123,110,246,.25);">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;">
+          <div>
+            <div class="card-pill"><i data-lucide="badge-check"></i> Revenue Model</div>
+            <h3 class="t-card">Performance-aligned. No upfront. No risk.</h3>
+            <p class="t-sm" style="margin-top:6px;max-width:440px;">We invest in your acquisition. We only earn when you
+              win. Hospitals get predictable patient flow without agency retainers.</p>
+          </div>
+          <a href="pages/contact.html" class="btn btn-lg btn-primary">Partner with Us <i data-lucide="arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ AD TECH ═══ -->
+  <section class="section-alt" id="adtech">
+    <div class="container">
+      <div class="section-hd reveal">
+        <div class="t-label"><i data-lucide="radio-tower"></i> SIGNAASAT Ad Tech</div>
+        <h2 class="t-section" style="margin-bottom:14px;">Proprietary traffic <span
+            class="grad-text">infrastructure.</span></h2>
+        <p class="t-body">SIGNAASAT operates ORTB infrastructure enabling independent traffic acquisition, global
+          inventory access, and scalable capability — the engine powering global expansion.</p>
+      </div>
+      <div class="g2 reveal d1">
+        <div class="card">
+          <div class="card-pill"><i data-lucide="activity"></i> Active Infrastructure</div>
+          <h3 class="t-card">Current Phase</h3>
+          <ul class="card-list">
+            <li><span class="li-i"><i data-lucide="arrow-right"></i></span>ORTB (OpenRTB) bidding infrastructure</li>
+            <li><span class="li-i"><i data-lucide="arrow-right"></i></span>Independent traffic acquisition capability
+            </li>
+            <li><span class="li-i"><i data-lucide="arrow-right"></i></span>Global programmatic inventory access</li>
+            <li><span class="li-i"><i data-lucide="arrow-right"></i></span>Real-time optimization engines</li>
+          </ul>
+        </div>
+        <div class="card" style="border-color:rgba(79,204,232,.25);background:var(--teal-soft);">
+          <div class="card-pill teal"><i data-lucide="rocket"></i> Next Phase</div>
+          <h3 class="t-card">Premium Healthcare Focus</h3>
+          <ul class="card-list">
+            <li><span class="li-i" style="color:var(--teal)"><i data-lucide="arrow-right"></i></span>Premium healthcare
+              publisher network</li>
+            <li><span class="li-i" style="color:var(--teal)"><i data-lucide="arrow-right"></i></span>Medical intent
+              audience targeting</li>
+            <li><span class="li-i" style="color:var(--teal)"><i data-lucide="arrow-right"></i></span>Hospital
+              geo-targeting precision</li>
+            <li><span class="li-i" style="color:var(--teal)"><i data-lucide="arrow-right"></i></span>Exclusive
+              healthcare inventory deals</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ AI AGENTS ═══ -->
+  <section class="section" id="ai">
+    <div class="container">
+      <div class="section-hd reveal">
+        <div class="t-label"><i data-lucide="bot"></i> The Future</div>
+        <h2 class="t-section" style="margin-bottom:14px;">AI agents that acquire and convert <span
+            class="grad-text">patients autonomously.</span></h2>
+        <p class="t-body">Operating 24/7 — increasing conversion while reducing operational load. They never sleep,
+          never miss a follow-up, never lose a lead.</p>
+      </div>
+      <!-- [FIX #14] g3 + full-width row -->
+      <div class="g3 reveal d1">
+        <div class="card">
+          <div class="card-icon"><i data-lucide="scan-search"></i></div>
+          <h3 class="t-card">Lead Qualification</h3>
+          <p class="t-sm" style="margin-top:8px;">AI scores and qualifies every lead in real-time. High-intent patients
+            reach your team instantly.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon"><i data-lucide="message-circle"></i></div>
+          <h3 class="t-card">Patient Communication</h3>
+          <p class="t-sm" style="margin-top:8px;">Intelligent conversations across WhatsApp, SMS, and email —
+            personalized to each patient's journey.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon"><i data-lucide="bell-ring"></i></div>
+          <h3 class="t-card">Follow-ups & Reminders</h3>
+          <p class="t-sm" style="margin-top:8px;">Automated sequences that re-engage cold leads and reduce appointment
+            no-shows dramatically.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon"><i data-lucide="sliders-horizontal"></i></div>
+          <h3 class="t-card">Conversion Optimization</h3>
+          <p class="t-sm" style="margin-top:8px;">Continuous A/B testing of messaging, timing, and channels. AI learns
+            and improves every cycle.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon"><i data-lucide="map"></i></div>
+          <h3 class="t-card">Journey Automation</h3>
+          <p class="t-sm" style="margin-top:8px;">Full journey from first touch to consultation to post-treatment
+            feedback — all automated.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon"><i data-lucide="languages"></i></div>
+          <h3 class="t-card">Multi-language Support</h3>
+          <p class="t-sm" style="margin-top:8px;">Communicate with patients in their native language across 50+
+            languages — breaking down barriers globally.</p>
+        </div>
+        <!-- [FIX #14] Full-width "Always On" card -->
+        <div class="card card-fullrow">
+          <div class="always-on-num">24/7</div>
+          <div>
+            <h3 class="t-card">Always On. Never Misses.</h3>
+            <p class="t-sm" style="margin-top:6px;max-width:480px;">AI agents operate continuously across every
+              timezone. Every lead qualified, followed up, and converted — without human intervention.</p>
+          </div>
+          <a href="pages/contact.html" class="btn btn-primary" style="flex-shrink:0;">Get AI Agents <i
+              data-lucide="arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ OS PLATFORM [FIX #12] ═══ -->
+  <section class="section-alt" id="os">
+    <div class="container">
+      <div class="section-hd reveal">
+        <div class="t-label"><i data-lucide="layout-dashboard"></i> SIGNAASAT OS</div>
+        <h2 class="t-section" style="margin-bottom:14px;">The Acquisition Operating System <span class="grad-text">for
+            Hospitals.</span></h2>
+        <p class="t-body">Complete acquisition visibility and control. Know exactly where every patient came from, where
+          they sit in the pipeline, and how to cut costs.</p>
+      </div>
+      <!-- [FIX #12] stretch alignment -->
+      <div class="os-section-grid reveal d1">
+        <div class="os-feat-list">
+          <div class="os-feat-row">
+            <div class="os-feat-icon"><i data-lucide="bar-chart-2"></i></div>
+            <div>
+              <div class="os-feat-title">Acquisition Performance Tracking</div>
+              <div class="os-feat-desc">Real-time CPA, channel attribution, and ROAS across every campaign.</div>
+            </div>
+          </div>
+          <div class="os-feat-row">
+            <div class="os-feat-icon"><i data-lucide="filter"></i></div>
+            <div>
+              <div class="os-feat-title">Patient Conversion Pipeline</div>
+              <div class="os-feat-desc">Full-funnel view from lead to booked patient with drop-off analysis.</div>
+            </div>
+          </div>
+          <div class="os-feat-row">
+            <div class="os-feat-icon"><i data-lucide="sparkles"></i></div>
+            <div>
+              <div class="os-feat-title">AI-Powered Insights</div>
+              <div class="os-feat-desc">Predictive recommendations on budget, timing, and audience segments.</div>
+            </div>
+          </div>
+          <div class="os-feat-row">
+            <div class="os-feat-icon"><i data-lucide="gauge"></i></div>
+            <div>
+              <div class="os-feat-title">Cost Efficiency Optimizer</div>
+              <div class="os-feat-desc">Continuously surfaces opportunities to reduce CPA while maintaining volume.
+              </div>
+            </div>
+          </div>
+          <div class="os-feat-row">
+            <div class="os-feat-icon"><i data-lucide="megaphone"></i></div>
+            <div>
+              <div class="os-feat-title">Campaign Management</div>
+              <div class="os-feat-desc">Launch, pause, and optimize campaigns across all channels in one place.</div>
+            </div>
+          </div>
+        </div>
+        <!-- Dashboard mockup -->
+        <div class="dash-mock">
+          <div class="dash-mock-bar">
+            <div class="dm-dot dm-dot-r"></div>
+            <div class="dm-dot dm-dot-y"></div>
+            <div class="dm-dot dm-dot-g"></div>
+            <span class="dm-title">SIGNAASAT OS — Command Center</span>
+          </div>
+          <div class="dash-mock-body">
+            <div class="stat-row">
+              <div class="stat-tile">
+                <div class="stat-lbl">Leads Today</div>
+                <div class="stat-val ac">847</div>
+                <div class="stat-delta"><i data-lucide="trending-up"></i>+12.4%</div>
+              </div>
+              <div class="stat-tile">
+                <div class="stat-lbl">Conversion</div>
+                <div class="stat-val tl">34.2%</div>
+                <div class="stat-delta"><i data-lucide="trending-up"></i>+5.1%</div>
+              </div>
+              <div class="stat-tile">
+                <div class="stat-lbl">Booked</div>
+                <div class="stat-val gn">115</div>
+                <div class="stat-delta"><i data-lucide="trending-up"></i>+8.7%</div>
+              </div>
+            </div>
+            <div class="chart-block">
+              <div class="chart-hd"><span class="chart-hd-title">Weekly Lead Volume</span><span class="chart-badge">↑
+                  18% vs last week</span></div>
+              <div class="bar-chart">
+                <div class="bar" style="height:62%"></div>
+                <div class="bar" style="height:75%"></div>
+                <div class="bar" style="height:54%"></div>
+                <div class="bar" style="height:88%"></div>
+                <div class="bar" style="height:70%"></div>
+                <div class="bar" style="height:95%"></div>
+                <div class="bar" style="height:100%"></div>
+              </div>
+              <div class="bar-labels"><span class="bar-lbl">Mon</span><span class="bar-lbl">Tue</span><span
+                  class="bar-lbl">Wed</span><span class="bar-lbl">Thu</span><span class="bar-lbl">Fri</span><span
+                  class="bar-lbl">Sat</span><span class="bar-lbl">Sun</span></div>
+            </div>
+            <div class="pipe-block">
+              <div class="pipe-title">Conversion Pipeline</div>
+              <div class="pipe-row"><span class="pipe-lbl">New Leads</span>
+                <div class="pipe-track">
+                  <div class="pipe-fill pf-ac" style="width:100%"></div>
+                </div><span class="pipe-count">847</span>
+              </div>
+              <div class="pipe-row"><span class="pipe-lbl">Qualified</span>
+                <div class="pipe-track">
+                  <div class="pipe-fill pf-tl" style="width:64%"></div>
+                </div><span class="pipe-count">542</span>
+              </div>
+              <div class="pipe-row"><span class="pipe-lbl">Engaged</span>
+                <div class="pipe-track">
+                  <div class="pipe-fill pf-ac" style="width:40%"></div>
+                </div><span class="pipe-count">338</span>
+              </div>
+              <div class="pipe-row"><span class="pipe-lbl">Booked</span>
+                <div class="pipe-track">
+                  <div class="pipe-fill pf-gn" style="width:13.5%"></div>
+                </div><span class="pipe-count">115</span>
+              </div>
+            </div>
+            <div class="feed-block">
+              <div class="feed-hd"><span class="feed-dot"></span>AI Agent Activity</div>
+              <div class="feed-item"><i data-lucide="bot"></i>Agent qualified lead #2847 — High intent (Cardiology)<span
+                  class="feed-time">2m ago</span></div>
+              <div class="feed-item"><i data-lucide="message-circle"></i>Follow-up sent to 23 dormant leads via
+                WhatsApp<span class="feed-time">5m ago</span></div>
+              <div class="feed-item"><i data-lucide="calendar-check"></i>Appointment confirmed — Dubai Clinic
+                (#2831)<span class="feed-time">11m ago</span></div>
+            </div>
+            <div class="camp-block">
+              <div class="camp-head"><span>Campaign</span><span>CPA</span><span>Status</span></div>
+              <div class="camp-row"><span class="camp-name">UAE — Cardio</span><span class="camp-cpa">$18.4</span><span
+                  class="s-live">Live</span></div>
+              <div class="camp-row"><span class="camp-name">SG — Ortho</span><span class="camp-cpa">$24.1</span><span
+                  class="s-live">Live</span></div>
+              <div class="camp-row"><span class="camp-name">IN — Oncology</span><span class="camp-cpa">$11.8</span><span
+                  class="s-pause">Paused</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ METRICS STRIP [FIX #13] ═══ -->
+  <div class="metrics-strip" role="region" aria-label="Key metrics">
+    <div class="container">
+      <div class="metrics-grid">
+        <div class="metric-block reveal">
+          <div class="metric-num">50+</div>
+          <div class="metric-lbl">Hospital Partners Globally</div>
+        </div>
+        <div class="metric-block reveal d1">
+          <div class="metric-num">34%</div>
+          <div class="metric-lbl">Average Conversion Lift</div>
+        </div>
+        <div class="metric-block reveal d2">
+          <div class="metric-num">24/7</div>
+          <div class="metric-lbl">AI Agent Uptime</div>
+        </div>
+        <div class="metric-block reveal d3">
+          <div class="metric-num">5</div>
+          <div class="metric-lbl">Regions & Growing</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ GLOBAL ═══ -->
+  <section class="section" id="global">
+    <div class="container" style="text-align:center;">
+      <div class="section-hd reveal" style="max-width:560px;margin:0 auto 0;">
+        <div class="t-label" style="justify-content:center;"><i data-lucide="globe"></i> Global Vision</div>
+        <h2 class="t-section" style="margin-bottom:14px;">Building the global <span class="grad-text">healthcare
+            acquisition layer.</span></h2>
+        <p class="t-body" style="max-width:440px;margin:0 auto;">Hospitals globally need acquisition infrastructure.
+          SIGNAASAT provides it — region by region, market by market.</p>
+      </div>
+      <div class="region-grid reveal d1">
+        <div class="region-card">
+          <div class="region-icon"><i data-lucide="building-2"></i></div>
+          <div class="region-name">Middle East</div>
+          <div class="region-status">Primary Market</div>
+        </div>
+        <div class="region-card">
+          <div class="region-icon"><i data-lucide="map-pin"></i></div>
+          <div class="region-name">Asia</div>
+          <div class="region-status">Active Expansion</div>
+        </div>
+        <div class="region-card">
+          <div class="region-icon"><i data-lucide="sun"></i></div>
+          <div class="region-name">Africa</div>
+          <div class="region-status">Growth Market</div>
+        </div>
+        <div class="region-card">
+          <div class="region-icon"><i data-lucide="compass"></i></div>
+          <div class="region-name">Europe</div>
+          <div class="region-status">Upcoming</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ WHY [FIX #7 - t-big] ═══ -->
+  <section class="section-alt" id="why">
+    <div class="container">
+      <div class="g-halves">
+        <div class="reveal">
+          <div class="t-label" style="margin-bottom:16px;"><i data-lucide="shield-check"></i> Why This Wins</div>
+          <h2 class="t-big">Infrastructure <span class="grad-text">always wins.</span></h2>
+          <div class="why-list">
+            <div class="why-item"><span class="why-num">1</span>
+              <div>
+                <div class="why-title">Not an Agency</div>
+                <div class="why-desc">Agencies bill for time. We earn on outcomes. Aligned incentives, scalable model.
+                </div>
+              </div>
+            </div>
+            <div class="why-item"><span class="why-num">2</span>
+              <div>
+                <div class="why-title">Not Just Ad Tech</div>
+                <div class="why-desc">Pure ad tech stops at the click. We own conversion, AI, and visibility beyond the
+                  click.</div>
+              </div>
+            </div>
+            <div class="why-item"><span class="why-num">3</span>
+              <div>
+                <div class="why-title">Not Just SaaS</div>
+                <div class="why-desc">SaaS gives tools. We give outcomes — powered by our own traffic, AI, and
+                  expertise.</div>
+              </div>
+            </div>
+            <div class="why-item"><span class="why-num">4</span>
+              <div>
+                <div class="why-title">Acquisition Infrastructure</div>
+                <div class="why-desc">Infrastructure scales. Infrastructure compounds. Infrastructure creates defensible
+                  moats.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal d2">
+          <div class="infra-box">
+            <div class="infra-big">5×</div>
+            <p class="infra-sub">Vertically integrated infrastructure delivers 5× more defensibility than point
+              solutions — with compounding returns as each layer improves the others.</p>
+            <div class="infra-metrics">
+              <div class="infra-metric">
+                <div class="im-val">100%</div>
+                <div class="im-lbl">Stack Ownership</div>
+              </div>
+              <div class="infra-metric">
+                <div class="im-val">0</div>
+                <div class="im-lbl">Agency Dependency</div>
+              </div>
+              <div class="infra-metric">
+                <div class="im-val">24/7</div>
+                <div class="im-lbl">AI Operation</div>
+              </div>
+              <div class="infra-metric">
+                <div class="im-val">Global</div>
+                <div class="im-lbl">Scale Ready</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA [FIX #7 - t-big] ═══ -->
+  <div class="cta-section">
+    <div class="container">
+      <div class="cta-inner reveal">
+        <div class="cta-eyebrow">The Future is Autonomous</div>
+        <h2 class="t-big">The future of healthcare<br>acquisition is <span class="grad-text">autonomous.</span></h2>
+        <p class="t-body" style="margin-top:18px;">SIGNAASAT is building that future. Partner with us today.</p>
+        <div class="cta-btns">
+          <a href="pages/contact.html" class="btn btn-lg btn-primary">Partner with SIGNAASAT <i
+              data-lucide="arrow-right"></i></a>
+          <a href="pages/contact.html" class="btn btn-lg btn-ghost">Request Platform Access</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ FOOTER [FIX #8, #20] ═══ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo-wrap">
+            <a href="index.html" class="nav-logo">
+              <span class="logo-mark">
+                <svg viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect width="30" height="30" rx="8" class="logo-bg" />
+                  <path d="M7 20 C9 20 11 12 15 15 C19 18 21 10 23 10" stroke="white" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                  <circle cx="23" cy="10" r="2" fill="white" />
+                  <circle cx="7" cy="20" r="2" fill="white" />
+                </svg>
+              </span>
+              <span class="logo-text">SIGNAA<em>SAT</em></span>
+            </a>
+          </div>
+          <p class="footer-tagline">Healthcare Acquisition & AI Infrastructure. Helping hospitals acquire, convert, and
+            scale patients globally.</p>
+        </div>
+        <div>
+          <div class="footer-col-title">Platform</div>
+          <ul class="footer-links">
+            <li><a href="#healthcare">Healthcare</a></li>
+            <li><a href="#adtech">Ad Tech</a></li>
+            <li><a href="#ai">AI Agents</a></li>
+            <li><a href="#os">OS Platform</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Company</div>
+          <ul class="footer-links">
+            <li><a href="pages/blog.html">Blog</a></li>
+            <li><a href="pages/contact.html">Contact</a></li>
+            <li><a href="#global">Global</a></li>
+            <li><a href="pages/legal.html">Legal</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Connect</div>
+          <ul class="footer-links">
+            <li><a href="pages/contact.html">Book a Call</a></li>
+            <li><a href="pages/contact.html">Request Demo</a></li>
+            <li><a href="pages/contact.html">Partner With Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">© 2025 SIGNAASAT. All rights reserved.</span>
+        <nav class="footer-legal" aria-label="Legal">
+          <a href="legal.html?tab=terms">Terms</a>
+          <a href="legal.html?tab=privacy">Privacy</a>
+          <a href="legal.html?tab=cookies">Cookies</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+</body>
+
+</html>

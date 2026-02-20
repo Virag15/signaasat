@@ -1,0 +1,24 @@
+{
+  "name": "signaasat",
+  "version": "1.0.0",
+  "description": "Healthcare Acquisition & AI Infrastructure Platform",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve . -p 3000",
+    "preview": "npx serve . -p 8080",
+    "deploy:netlify": "netlify deploy --prod",
+    "deploy:vercel": "vercel --prod"
+  },
+  "keywords": [
+    "healthcare",
+    "acquisition",
+    "ai-agents",
+    "analytics",
+    "dashboard"
+  ],
+  "author": "SIGNAASAT",
+  "license": "UNLICENSED",
+  "private": true,
+  "devDependencies": {},
+  "dependencies": {}
+}
