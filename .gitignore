@@ -75,10 +75,21 @@ coverage/
 *.lcov
 
 # ─── Internal Development Docs ───
-# (Remove from git but keep locally)
-docs/CHECKLIST.md
-docs/SIGNAASAT_CONTEXT.md
+# (Keep locally, not in git)
+docs/
+DEPLOYMENT.md
+GIT_BEST_PRACTICES.md
+IMPROVEMENTS.md
+OPTIMIZATION_GUIDE.md
+PERFORMANCE_SUMMARY.md
+QUICKSTART.md
 INTERNAL_NOTES.md
+
+# ─── Build & Utility Scripts ───
+# (Keep locally for development, not in git)
+optimize.js
+performance-monitor.js
+router.php
 
 # ─── Optional: Deployment Configs ───
 # Uncomment if you don't want these in git:
