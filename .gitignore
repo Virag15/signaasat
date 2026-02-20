@@ -1,50 +1,124 @@
-# Dependencies
+# ═══════════════════════════════════════════
+# SIGNAASAT .gitignore
+# Production-ready ignore patterns
+# ═══════════════════════════════════════════
+
+# ─── Dependencies ───
 node_modules/
 package-lock.json
+yarn.lock
+pnpm-lock.yaml
 
-# Build outputs
+# ─── Build Outputs ───
 dist/
 build/
+out/
 *.min.js
 *.min.css
+.next/
+.nuxt/
 
-# Environment variables
+# ─── Environment Variables ───
 .env
 .env.local
+.env.development
+.env.test
 .env.production
+.env*.local
 
-# OS files
+# ─── OS Files ───
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
+desktop.ini
 
-# Editor directories
+# ─── Editor Directories & Files ───
 .vscode/
 .idea/
+*.sublime-project
+*.sublime-workspace
 *.swp
 *.swo
+*.swn
 *~
+.project
+.settings/
 
-# Logs
+# ─── Logs ───
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+lerna-debug.log*
+pnpm-debug.log*
 
-# Temporary files
+# ─── Temporary Files ───
 *.tmp
+*.temp
 .cache/
 .temp/
+.parcel-cache/
 
-# Backup files
+# ─── Backup Files ───
 *.backup
 *.bak
+*.orig
 *~
 
-# Development docs (internal only)
+# ─── Test Coverage ───
+coverage/
+.nyc_output/
+*.lcov
+
+# ─── Internal Development Docs ───
+# (Remove from git but keep locally)
 docs/CHECKLIST.md
 docs/SIGNAASAT_CONTEXT.md
+INTERNAL_NOTES.md
 
-# Deployment configs (optional - remove if using)
+# ─── Optional: Deployment Configs ───
+# Uncomment if you don't want these in git:
 # netlify.toml
 # vercel.json
 # router.php
+
+# ─── Optional: Documentation ───
+# Uncomment if you don't want dev docs in git:
+# IMPROVEMENTS.md
+# QUICKSTART.md
+
+# ─── Runtime & Debug ───
+.eslintcache
+*.pid
+*.seed
+*.pid.lock
+
+# ─── Serverless ───
+.serverless/
+.webpack/
+
+# ─── Local CLI Config ───
+.env.local
+.vercel
+.netlify
+
+# ─── macOS ───
+.AppleDouble
+.LSOverride
+
+# ─── Windows ───
+[Tt]humbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# ─── Linux ───
+.directory
+.Trash-*
+
+# Keep these files (force include)
+!.gitkeep
+!.htaccess
