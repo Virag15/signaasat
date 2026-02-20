@@ -6,8 +6,10 @@
   "scripts": {
     "dev": "npx serve . -p 3000",
     "preview": "npx serve . -p 8080",
-    "deploy:netlify": "netlify deploy --prod",
-    "deploy:vercel": "vercel --prod"
+    "build": "node optimize.js",
+    "perf": "npx serve . -p 3000 && open http://localhost:3000?perf=1",
+    "deploy:netlify": "npm run build && netlify deploy --prod",
+    "deploy:vercel": "npm run build && vercel --prod"
   },
   "keywords": [
     "healthcare",

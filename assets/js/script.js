@@ -70,8 +70,21 @@
   function initNav() {
     const nav = document.querySelector('.nav');
     if (!nav) return;
-    const check = () => nav.classList.toggle('scrolled', window.scrollY > 28);
-    window.addEventListener('scroll', check, { passive: true });
+
+    let ticking = false;
+    const check = () => {
+      nav.classList.toggle('scrolled', window.scrollY > 28);
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(check);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
     check();
   }
 
@@ -87,6 +100,7 @@
       if (sec) pairs.push({ a, sec });
     });
 
+    let ticking = false;
     const spy = () => {
       let current = '';
       pairs.forEach(({ sec }) => {
@@ -95,9 +109,17 @@
       links.forEach(a => {
         a.classList.toggle('active', a.getAttribute('href') === '#' + current);
       });
+      ticking = false;
     };
 
-    window.addEventListener('scroll', spy, { passive: true });
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(spy);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
     spy();
   }
 
@@ -151,6 +173,19 @@
         });
       });
     });
+  }
+
+  /* ─── UTILITY: Debounce ─── */
+  function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+      const later = () => {
+        clearTimeout(timeout);
+        func(...args);
+      };
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
   }
 
   /* ─── SOCIAL SHARE [Blog Detail] ─── */

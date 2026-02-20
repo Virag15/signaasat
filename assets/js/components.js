@@ -75,9 +75,10 @@
           lucide.createIcons();
         }
 
-        // Re-attach theme toggle event listener if this is the header
+        // Re-attach theme toggle and mobile menu if this is the header
         if (elementId === 'header-component') {
           initThemeToggle();
+          initMobileMenu();
         }
 
         // Set current year in footer
@@ -114,6 +115,52 @@
       document.documentElement.setAttribute('data-theme', newTheme);
       localStorage.setItem('theme', newTheme);
     });
+  }
+
+  // Initialize mobile menu toggle (optimized)
+  function initMobileMenu() {
+    const toggle = document.getElementById('mobileMenuToggle');
+    const menu = document.getElementById('navMenu');
+    if (!toggle || !menu) return;
+
+    const closeMobileMenu = () => {
+      toggle.classList.remove('active');
+      menu.classList.remove('active');
+      toggle.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    };
+
+    toggle.addEventListener('click', () => {
+      const isActive = toggle.classList.contains('active');
+      if (isActive) {
+        closeMobileMenu();
+      } else {
+        toggle.classList.add('active');
+        menu.classList.add('active');
+        toggle.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+
+    // Close menu when clicking links (event delegation)
+    menu.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') {
+        closeMobileMenu();
+      }
+    });
+
+    // Close menu on resize > 900px (debounced, passive)
+    let resizeTimer;
+    const handleResize = () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        if (window.innerWidth > 900 && toggle.classList.contains('active')) {
+          closeMobileMenu();
+        }
+      }, 250);
+    };
+
+    window.addEventListener('resize', handleResize, { passive: true });
   }
 
   // Highlight active navigation link
